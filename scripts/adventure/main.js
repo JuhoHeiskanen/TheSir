@@ -44,10 +44,15 @@ function main(message) {
 
         case BEACH:
           switch (parseInt(args[DECISION])) {
-            case 1:
+            case QUIT:
               sendMessage(BEACH_STORY[1], message);
               resetGame();
               break;
+            case 1:
+              sendMessage(createMessage(BEACH_STORY[2]), message);
+
+              break;
+            case 2:
           }
           break;
 
@@ -79,7 +84,7 @@ function getUserID(message) {
 }
 
 function sendMessage(yourMessage, message) {
-  message.channel.send(yourMessage);
+  message.channel.send({ embed: { description: yourMessage } });
 }
 
 function createFirstMessage(message) {
@@ -103,11 +108,9 @@ function createFirstMessage(message) {
   return firstMessage;
 }
 
-function createMessage(story, question, options) {
-  let message = story + "\n" + question + "\n";
-  for (let i = 0; i < options.length; i++) {
-    message = message + options[i];
-  }
+function createMessage(story) {
+  const property = "Sinulla on vielä " + money + " rahaa. \n\n";
+  let message = property + story;
   return message;
 }
 
@@ -147,7 +150,7 @@ const BEACH = 1;
 const INTERNET = 2;
 
 const BEACH_STORY = [
-  "Saavut kallioiselle rannalle. Huomaat rannan pimeimmässä reunassa harmaan möhkäleen. Mitä teet?\n1: Lähden takaisin kotiin. Pelottaa. \n2: Menen tutkimaan harmaata möhkälettä",
+  "Saavut kallioiselle rannalle. Huomaat rannan pimeimmässä reunassa harmaan möhkäleen. Mitä teet?\n0: Lähden takaisin kotiin. Pelottaa. \n1: Menen tutkimaan harmaata möhkälettä",
   "Tulit takaisin kotiin hoitamaan kanojasi. Vaikka maailma pelottaa, niin kanat ovat aina. Ja munat.",
-  "Kuljet lähemmäs harmaata möhkälettä. Se osittautuu jonkinlaiseksi hylkeeksi, mutta se hieroo käsiään toisiaan vasten ja vilkuilee kierosti sivuilleen"
+  "Kuljet lähemmäs harmaata möhkälettä. Se osittautuu jonkinlaiseksi hylkeeksi, mutta yllätykseksesi se puhuu! 'Minä olen Psykomanaatti ja tämä on minun rantani! Maksa 5 rahaa tai usutan pahat voimat kimppuusi!', hylje sanoo sinua mulkoillen. \nMitä teet? \n\n0: Tämä seikkailu oli tässä! Juoksen päätäpahkaa kotiin kanojeni luokse. Ne eivät sentään uhakile minua... \n1: Maksan kiltisti Psykomanaatille rahat. \n2: Koitan selvitä puhumalla. \n"
 ];

@@ -14,7 +14,8 @@ const voiceChannel = require("./scripts/voicechannel/main.js");
 const poke = require("./scripts/poke/main.js");
 const commands = require("./scripts/commands/main.js");
 const niiloTweets = require("./scripts/niiloTweet/main.js");
-const story = require('./scripts/story/main.js');
+const story = require("./scripts/story/main.js");
+const adventure = require("./scripts/adventure/main.js");
 
 /* stuff */
 const prefix = "sir ";
@@ -64,6 +65,9 @@ client.on("message", message => {
       break;
     case "story":
       story.beginStory(message);
+      break;
+    case "adventure":
+      adventure.adventure(message);
       break;
     //	case 'messsage_X':
     //  break;
